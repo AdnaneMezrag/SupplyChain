@@ -15,7 +15,7 @@ public class OrderOptimizationController : ControllerBase
     public async Task<IActionResult> OptimizeOrders()
     {
         // Define the planning date as today in "yyyy-MM-dd" format.
-        string planningDate = "2025-03-29";
+        string planningDate = "2025-03-31";
 
         // Retrieve orders from your real DB using your DatabaseService.
         List<DeliveringOrders> orders = await DatabaseService.GetOrdersAsync(planningDate);
@@ -34,7 +34,7 @@ public class OrderOptimizationController : ControllerBase
         // Start planning using the orders and reference existing drivers in OptimoRoute.
         string planningResponse = await OptimoRouteService.StartPlanningAsync(planningDate, orders);
 
-        await Task.Delay(5000);
+        await Task.Delay(10000);
 
         // Retrieve the optimized routes for the planning date.
         string routesResponse = await OptimoRouteService.GetRoutesByDateAsync(planningDate);

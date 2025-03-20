@@ -107,10 +107,10 @@ namespace Backend.Controllers
                 return BadRequest("OrderID should be greater than 0");
             }
 
-            if (orderRequestDTO == null || orderRequestDTO.Quantity < 0 || orderRequestDTO.TotalAmount < 0)
-            {
-                return BadRequest("Order data is not valid!");
-            }
+            //if (orderRequestDTO == null || orderRequestDTO.Quantity < 0 || orderRequestDTO.TotalAmount < 0)
+            //{
+            //    return BadRequest("Order data is not valid!");
+            //}
 
             clsOrder order = clsOrder.Find(id);
             if (order == null)
@@ -119,13 +119,13 @@ namespace Backend.Controllers
             }
 
             // Update the order's properties from the DTO.
-            order.TotalAmount = orderRequestDTO.TotalAmount;
+            //order.TotalAmount = orderRequestDTO.TotalAmount;
             order.OrderStatus = orderRequestDTO.OrderStatus;
-            order.Quantity = orderRequestDTO.Quantity;
-            order.OrderDate = orderRequestDTO.OrderDate;
-            order.ReceiveDate = orderRequestDTO.ReceiveDate;
-            order.Address = orderRequestDTO.Address;
-            order.Feedback = orderRequestDTO.Feedback;
+            //order.Quantity = orderRequestDTO.Quantity;
+            //order.OrderDate = orderRequestDTO.OrderDate;
+            //order.ReceiveDate = orderRequestDTO.ReceiveDate;
+            //order.Address = orderRequestDTO.Address;
+            //order.Feedback = orderRequestDTO.Feedback;
 
             // Save the updated order asynchronously.
             if (!await order.SaveAsync())

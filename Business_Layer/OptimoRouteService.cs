@@ -127,32 +127,34 @@ public class OptimoRouteService
     /// 2. Start planning using orders and existing drivers in OptimoRoute.
     /// 3. Retrieve optimized routes.
     /// </summary>
-    public async Task RunOptimizationProcess()
-    {
-        string planningDate = DateTime.Now.ToString(); // The planning date
+    //public async Task RunOptimizationProcess()
+    //{
+    //    string planningDate = "2025-03-26"; // The planning date
 
-        // Retrieve orders from the simulated database.
-        List<DeliveringOrders> orders = await DatabaseService.GetOrdersAsync(planningDate);
+    //    // Retrieve orders from the simulated database.
+    //    List<DeliveringOrders> orders = await DatabaseService.GetOrdersAsync(planningDate);
 
-        // 1. Create/Sync each order in OptimoRoute.
-        Console.WriteLine("Creating/Syncing Orders:");
-        foreach (var order in orders)
-        {
-            string createOrderResponse = await CreateOrderAsync(order, planningDate);
-            Console.WriteLine($"Order {order.OrderId} Create Response: {createOrderResponse}");
-        }
+    //    // 1. Create/Sync each order in OptimoRoute.
+    //    Console.WriteLine("Creating/Syncing Orders:");
+    //    foreach (var order in orders)
+    //    {
+    //        string createOrderResponse = await CreateOrderAsync(order, planningDate);
+    //        Console.WriteLine($"Order {order.OrderId} Create Response: {createOrderResponse}");
+    //    }
 
-        // Optional: Wait a bit for the orders to be processed.
-        await Task.Delay(2000);
+    //    // Optional: Wait a bit for the orders to be processed.
+    //    await Task.Delay(2000);
 
-        // 2. Start planning using the orders and existing drivers in OptimoRoute.
-        string planningResponse = await StartPlanningAsync(planningDate, orders);
-        Console.WriteLine("Start Planning Response: " + planningResponse);
+    //    // 2. Start planning using the orders and existing drivers in OptimoRoute.
+    //    string planningResponse = await StartPlanningAsync(planningDate, orders);
+    //    Console.WriteLine("Start Planning Response: " + planningResponse);
 
-        // 3. Retrieve optimized routes for the same date.
-        string routesResponse = await GetRoutesByDateAsync(planningDate);
-        Console.WriteLine("Optimized Routes: " + routesResponse);
-    }
+    //    await Task.Delay(5000);
+
+    //    // 3. Retrieve optimized routes for the same date.
+    //    string routesResponse = await GetRoutesByDateAsync(planningDate);
+    //    Console.WriteLine("Optimized Routes: " + routesResponse);
+    //}
 
 }
 
@@ -160,6 +162,7 @@ public static class DatabaseService
 {
     public static async Task<List<DeliveringOrders>> GetOrdersAsync(string date)
     {
+        await Task.Delay(100);
         return await clsOrder.GetDeliveringOrders();
     }
 
